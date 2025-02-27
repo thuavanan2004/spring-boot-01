@@ -9,12 +9,15 @@ public class BuildingSearchBuilder {
 	private String district;
 	private Integer numberOfBasement;
 	private Long floorArea;
-	private Long rentPrice;
 	private String managerName;
 	private String managerPhone;
 	private String serviceFee;
 	private String brokerageFee;
 	private String staffId;
+	private String rentAreaTo;
+	private String rentAreaFrom;
+	private String rentPriceTo;
+	private String rentPriceFrom;
 	private List<String> typeCodeList = new ArrayList<>();
 	
 	
@@ -25,12 +28,15 @@ public class BuildingSearchBuilder {
 		this.district = builder.district;
 		this.numberOfBasement = builder.numberOfBasement;
 		this.floorArea = builder.floorArea;
-		this.rentPrice = builder.rentPrice;
 		this.managerName = builder.managerName;
 		this.managerPhone = builder.managerPhone;
 		this.serviceFee = builder.serviceFee;
 		this.brokerageFee = builder.brokerageFee;
 		this.staffId = builder.staffId;
+		this.rentAreaTo = builder.rentAreaTo;
+		this.rentAreaFrom = builder.rentAreaFrom;
+		this.rentPriceTo = builder.rentPriceTo;
+		this.rentPriceFrom = builder.rentPriceFrom;
 		this.typeCodeList = builder.typeCodeList;
 	}
 	public Long getId() {
@@ -48,9 +54,7 @@ public class BuildingSearchBuilder {
 	public Long getFloorArea() {
 		return floorArea;
 	}
-	public Long getRentPrice() {
-		return rentPrice;
-	}
+	
 	public String getManagerName() {
 		return managerName;
 	}
@@ -69,6 +73,18 @@ public class BuildingSearchBuilder {
 	public String getStaffId() {
 		return staffId;
 	}
+	public String getRentAreaTo() {
+		return rentAreaTo;
+	}
+	public String getRentAreaFrom() {
+		return rentAreaFrom;
+	}
+	public String getRentPriceTo() {
+		return rentPriceTo;
+	}
+	public String getRentPriceFrom() {
+		return rentPriceFrom;
+	}
 
 	public static class Builder {
 		private Long id;
@@ -76,12 +92,15 @@ public class BuildingSearchBuilder {
 		private String district;
 		private Integer numberOfBasement;
 		private Long floorArea;
-		private Long rentPrice;
 		private String managerName;
 		private String managerPhone;
 		private String serviceFee;
 		private String brokerageFee;
 		private String staffId;
+		private String rentAreaTo;
+		private String rentAreaFrom;
+		private String rentPriceTo;
+		private String rentPriceFrom;
 		private List<String> typeCodeList = new ArrayList<>();
 		
 		
@@ -105,10 +124,6 @@ public class BuildingSearchBuilder {
 			this.floorArea = floorArea;
 			return this;
 		}
-		public Builder setRentPrice(Long rentPrice) {
-			this.rentPrice = rentPrice;
-			return this;
-		}
 		public Builder setManagerName(String managerName) {
 			this.managerName = managerName;
 			return this;
@@ -127,6 +142,22 @@ public class BuildingSearchBuilder {
 		}
 		public Builder setStaffId(String staffId) {
 			this.staffId = staffId;
+			return this;
+		}
+		public Builder setRentAreaTo(String rentAreaTo) {
+			this.rentAreaTo = rentAreaTo;
+			return this;
+		}
+		public Builder setRentAreaFrom(String rentAreaFrom) {
+			this.rentAreaFrom = rentAreaFrom;
+			return this;
+		}
+		public Builder setRentPriceTo(String rentPriceTo) {
+			this.rentPriceTo = rentPriceTo;
+			return this;
+		}
+		public Builder setRentPriceFrom(String rentPriceFrom) {
+			this.rentPriceFrom = rentPriceFrom;
 			return this;
 		}
 		public Builder setTypeCodeList(List<String> typeCodeList) {

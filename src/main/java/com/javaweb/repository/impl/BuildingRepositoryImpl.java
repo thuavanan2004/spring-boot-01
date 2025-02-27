@@ -1,6 +1,5 @@
 package com.javaweb.repository.impl;
 
-import java.beans.JavaBean;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -52,7 +50,10 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 				item.setAccessible(true);
 				String fieldName = item.getName();
 				if(!fieldName.equals("staffId") && !fieldName.equals("typeCode") && !fieldName.startsWith("area") && !fieldName.startsWith("rentPrice")) {
-					String value = fieldName.toString();
+					String value = item.get(buildingSearchBuilder) != null ? item.get(buildingSearchBuilder).toString() : null;
+					if(value == null) {
+						break;
+					}
 					if(StringUtil.checkString(value) && NumberUtil.isNumber(value)) {
 						where.append(" AND b." + fieldName + " = " + value);
 					}else {
@@ -70,8 +71,8 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 			where.append(" AND assignmentbuilding.staffid = " + staffId);
 		}
 		
-		String rentAreaTo = (String)params.get("areaTo");
-		String rentAreaFrom = (String)params.get("areaFrom");
+		String rentAreaTo = buildingSearchBuilder.getRentAreaTo();
+		String rentAreaFrom = buildingSearchBuilder.getRentAreaFrom();
 		if(StringUtil.checkString(rentAreaFrom) || StringUtil.checkString(rentAreaTo)) {
 			where.append(" AND EXISTS ( SELECT * FROM rentarea WHERE b.id = rentarea.buildingid ");
 			
@@ -84,8 +85,8 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 			where.append(" ) ");
 		}
 		
-		String rentPriceTo = (String)params.get("rentPriceTo");
-		String rentPriceFrom = (String)params.get("rentPriceFrom");
+		String rentPriceTo = buildingSearchBuilder.getRentPriceTo();
+		String rentPriceFrom = buildingSearchBuilder.getRentPriceFrom();
 		if(StringUtil.checkString(rentPriceFrom) || StringUtil.checkString(rentPriceTo)) {
 			if(StringUtil.checkString(rentPriceFrom)) {
 				where.append(" AND b.rentprice >= " + rentPriceFrom);
@@ -104,6 +105,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 //		}
 		
 //		Java 8
+		List<String> typeCode = buildingSearchBuilder.getTypeCodeList();
 		if(typeCode != null && typeCode.size() != 0) {
 			where.append(" AND ( ");
 			String sql = typeCode.stream().map(it -> "renttype.code LIKE '%" + it +  "%' ").collect(Collectors.joining(" OR "));
