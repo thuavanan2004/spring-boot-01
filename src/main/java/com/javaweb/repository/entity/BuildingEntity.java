@@ -1,17 +1,63 @@
 package com.javaweb.repository.entity;
 
-public class BuildingEntity {
-	private Long id;
-	private String name;
-	private String district;
-	private Integer numberOfBasement;
-	private Long floorArea;
-	private Long rentPrice;
-	private String managerName;
-	private String managerPhone;
-	private String serviceFee;
-	private String brokerageFee;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+/**
+ * 
+ */
+@Entity
+@Table(name="building")
+public class BuildingEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "district")
+	private String district;
+	
+	@Column(name = "numberOfBasement")
+	private Integer numberOfBasement;
+	
+	@Column(name = "floorArea")
+	private Long floorArea;
+	
+	@Column(name = "rentPrice")
+	private Long rentPrice;
+	
+	@Column(name = "managerName")
+	private String managerName;
+	
+	@Column(name = "managerPhone")
+	private String managerPhone;
+	
+	@Column(name = "serviceFee")
+	private String serviceFee;
+	
+	@Column(name = "brokerageFee")
+	private String brokerageFee;
+	
+	@OneToMany(mappedBy = "buildingEntity", fetch = FetchType.LAZY)
+	private List<RentAreaEntity> rentAreaEntities;
+	
+
+	public List<RentAreaEntity> getRentAreaEntities() {
+		return rentAreaEntities;
+	}
+	public void setRentAreaEntities(List<RentAreaEntity> rentAreaEntities) {
+		this.rentAreaEntities = rentAreaEntities;
+	}
 	public Long getId() {
 		return id;
 	}
