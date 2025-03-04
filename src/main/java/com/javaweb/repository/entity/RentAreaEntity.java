@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rentArea")
+@Table(name = "rentarea")
 public class RentAreaEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class RentAreaEntity {
 	private String value;
 	
 	@ManyToOne
-	@JoinColumn(name="buildingEntityId", nullable=false)
+	@JoinColumn(name="buildingid", nullable=false)
 	private BuildingEntity buildingEntity;
 	
 	public BuildingEntity getBuildingEntity() {

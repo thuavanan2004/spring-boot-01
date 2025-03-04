@@ -13,7 +13,6 @@ import com.javaweb.repository.RentAreaRepository;
 import com.javaweb.repository.entity.RentAreaEntity;
 import com.javaweb.utils.ConnectionJDBCUtil;
 
-@Repository
 public class RentAreaRepositoryImpl implements RentAreaRepository {
 
 	@Override

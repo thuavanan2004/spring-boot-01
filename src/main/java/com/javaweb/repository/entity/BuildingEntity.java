@@ -27,25 +27,25 @@ public class BuildingEntity {
 	@Column(name = "district")
 	private String district;
 	
-	@Column(name = "numberOfBasement")
+	@Column(name = "numberofbasement")
 	private Integer numberOfBasement;
 	
-	@Column(name = "floorArea")
+	@Column(name = "floorarea")
 	private Long floorArea;
 	
-	@Column(name = "rentPrice")
+	@Column(name = "rentprice")
 	private Long rentPrice;
 	
-	@Column(name = "managerName")
+	@Column(name = "managername")
 	private String managerName;
 	
-	@Column(name = "managerPhone")
+	@Column(name = "managerphone")
 	private String managerPhone;
 	
-	@Column(name = "serviceFee")
+	@Column(name = "servicefee")
 	private String serviceFee;
 	
-	@Column(name = "brokerageFee")
+	@Column(name = "brokeragefee")
 	private String brokerageFee;
 	
 	@OneToMany(mappedBy = "buildingEntity", fetch = FetchType.LAZY)

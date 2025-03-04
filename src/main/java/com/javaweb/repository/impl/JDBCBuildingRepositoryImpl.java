@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import com.javaweb.builder.BuildingSearchBuilder;
+import com.javaweb.model.BuildingDTO;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.utils.ConnectionJDBCUtil;
@@ -19,7 +20,7 @@ import com.javaweb.utils.NumberUtil;
 import com.javaweb.utils.StringUtil;
 
 @Repository
-public class JDBCBuildingRepositoryImpl implements BuildingRepository {
+public class JDBCBuildingRepositoryImpl {
 	public static void join(BuildingSearchBuilder buildingSearchBuilder, StringBuilder sql) {
 		String staffId = buildingSearchBuilder.getStaffId();
 		if(StringUtil.checkString(staffId)) {
@@ -114,7 +115,7 @@ public class JDBCBuildingRepositoryImpl implements BuildingRepository {
 		
 	}
 	
-	@Override
+	
 	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingSearchBuilder) {
 		StringBuilder sql = new StringBuilder("SELECT b.id, b.name, b.district, b.numberofbasement, b.floorarea, b.rentprice, b.managername, b.managerphone, b.servicefee, b.brokeragefee FROM building b");
 		join(buildingSearchBuilder, sql);
@@ -149,5 +150,6 @@ public class JDBCBuildingRepositoryImpl implements BuildingRepository {
 		}
 		return resultBuildingEntities;
 	}
+	
 
 }

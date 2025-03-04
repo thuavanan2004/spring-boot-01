@@ -26,15 +26,22 @@ public class BuildingServiceImpl implements BuildingService {
 	@Autowired
 	private BuildingSearchBuilderConverter buildingSearchBuilderConverter;
 	
-	@Override
+	
 	public List<BuildingDTO> findAll(Map<String, Object> params, List<String> typeCode) {
-		BuildingSearchBuilder buildingSearchBuilder = buildingSearchBuilderConverter.toBuildingSearchBuilder(params, typeCode);
-		List<BuildingEntity> buildingEntities = buildingRepository.findAll(buildingSearchBuilder);
-		List<BuildingDTO> buildingDTOs = new ArrayList<BuildingDTO>();
-		for(BuildingEntity item : buildingEntities) {
-			BuildingDTO buildingDTO = buildingDTOConverter.toBuildingDTO(item);
-			buildingDTOs.add(buildingDTO);
-		}
-		return buildingDTOs;
+//		BuildingSearchBuilder buildingSearchBuilder = buildingSearchBuilderConverter.toBuildingSearchBuilder(params, typeCode);
+//		List<BuildingEntity> buildingEntities = buildingRepository.findAll(buildingSearchBuilder);
+//		List<BuildingDTO> buildingDTOs = new ArrayList<BuildingDTO>();
+//		for(BuildingEntity item : buildingEntities) {
+//			BuildingDTO buildingDTO = buildingDTOConverter.toBuildingDTO(item);
+//			buildingDTOs.add(buildingDTO);
+//		}
+//		return buildingDTOs;
+		return null;
+	}
+
+	@Override
+	public void create(BuildingDTO buildingDTO) {
+		// TODO Auto-generated method stub
+		
 	}
 }

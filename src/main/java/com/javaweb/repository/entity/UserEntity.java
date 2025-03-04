@@ -9,7 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,8 +19,17 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
+	@Column(name = "userName", nullable = false)
+	private String userName;
+	
+	@Column(name = "passWord", nullable = false)
+	private String passWord;
+	
+	@Column(name = "phone")
+	private String phone;
+	
+	@ManyToMany(mappedBy = "users" ,fetch = FetchType.LAZY)
+	private List<RoleEntity> roles = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -30,13 +39,6 @@ public class UserEntity {
 		this.id = id;
 	}
 
-	public List<UserRoleEntity> getUserRoleEntities() {
-		return userRoleEntities;
-	}
-
-	public void setUserRoleEntities(List<UserRoleEntity> userRoleEntities) {
-		this.userRoleEntities = userRoleEntities;
-	}
 
 	public String getUserName() {
 		return userName;
@@ -62,14 +64,13 @@ public class UserEntity {
 		this.phone = phone;
 	}
 
-	@Column(name = "userName", nullable = false)
-	private String userName;
-	
-	@Column(name = "passWord", nullable = false)
-	private String passWord;
-	
-	@Column(name = "phone")
-	private String phone;
-	
+	public List<RoleEntity> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
+	}
+
 	
 }
